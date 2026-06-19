@@ -25,7 +25,15 @@ def crear_factura(nueva_factura: FacturaModelo):
     BD_FACTURAS.append(nueva_factura.model_dump())
     return {"mensaje": "Factura creada con éxito", "factura": nueva_factura}
 
-#2 obtener fact
+#2 obtener factura
 @app.get("/facturas", summary="Obtener todas las facturas")
 def obtener_todas_las_facturas():
     return BD_FACTURAS
+
+#3 especificacion
+@app.get("/facturas/{factura_id}", summary="Obtener una factura por su ID")
+def obtener_factura_por_id(factura_id: int):
+    for factura in BD_FACTURAS:
+        if factura["id"] == factura_id:
+            return factura
+    raise HTTPException(status_code=404, detail="Factura no encontrada")
