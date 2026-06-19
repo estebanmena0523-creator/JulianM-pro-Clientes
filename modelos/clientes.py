@@ -16,3 +16,7 @@ class ClienteModelo(BaseModel):
     nombre: str
     email: str
     descripcion: str 
+
+@app.get("/saludar/{nombre}") 
+def saludar_nombre(nombre: str): 
+    return {"mensaje": f"Hola, {nombre}"}
