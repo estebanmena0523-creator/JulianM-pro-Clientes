@@ -16,7 +16,14 @@ class ClienteModelo(BaseModel):
     nombre: str
     email: str
     descripcion: str 
-
+#1 saludo
 @app.get("/saludar/{nombre}") 
 def saludar_nombre(nombre: str): 
     return {"mensaje": f"Hola, {nombre}"}
+#2 actualizar el cliente
+@app.put("/clientes/{cliente_id}", summary="Actualizar todo el cliente")
+def actualizar_cliente_completo(cliente_id: int, datos_actualizados: ClienteModelo):
+    for cliente in BD_CLIENTES:
+        if cliente["id"] == cliente_id:
+            cliente.update(datos_actualizados.dict())
+            return {"mensaje": f"Cliente con ID {cliente_id} actualizado con éxito", "cliente": cliente}

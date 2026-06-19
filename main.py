@@ -28,7 +28,7 @@ class Transacciones:
 
 class factura:
     id: int
-    cliente: cliente
+    Cliente: Cliente
     Vr_total: float
 
 @app.get("/") 
