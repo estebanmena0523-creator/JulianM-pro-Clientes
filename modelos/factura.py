@@ -48,3 +48,12 @@ def obtener_facturas_por_cliente(cliente_id: int):
         raise HTTPException(status_code=404, detail="No se encontraron facturas para este cliente")
         
     return facturas_cliente
+
+#5 eliminar factura
+@app.delete("/facturas/{factura_id}", summary="Eliminar una factura")
+def eliminar_factura(factura_id: int):
+    for indice, factura in enumerate(BD_FACTURAS):
+        if factura["id"] == factura_id:
+            factura_eliminada = BD_FACTURAS.pop(indice)
+            return {"mensaje": f"Factura con ID {factura_id} eliminada", "factura": factura_eliminada}
+    raise HTTPException(status_code=404, detail="Factura no encontrada")
