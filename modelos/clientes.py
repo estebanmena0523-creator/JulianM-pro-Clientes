@@ -29,7 +29,15 @@ def actualizar_cliente_completo(cliente_id: int, datos_actualizados: ClienteMode
             cliente.update(datos_actualizados.dict())
             return {"mensaje": f"Cliente con ID {cliente_id} actualizado con éxito", "cliente": cliente}
 
-# 3. Obtener todos los clientes (GET)
+#3 Obtener todos los clientes (GET)
 @app.get("/clientes", summary="Obtener lista de clientes")
 def obtener_clientes():
     return BD_CLIENTES
+
+#4 Crear un nuevo cliente (POST)
+@app.post("/clientes", summary="Crear un nuevo cliente")
+def crear_cliente(nuevo_cliente: ClienteModelo):
+    # Validamos que el ID no exista ya en nuestra "BD"
+    for cliente in BD_CLIENTES:
+        if cliente["id"] == nuevo_cliente.id:
+            raise HTTPException(status_code=400, detail="El ID de cliente ya existe")
