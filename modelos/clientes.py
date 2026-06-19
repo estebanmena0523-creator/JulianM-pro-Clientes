@@ -46,7 +46,7 @@ def crear_cliente(nuevo_cliente: ClienteModelo):
     BD_CLIENTES.append(nuevo_cliente.model_dump())
     return {"mensaje": "Cliente creado con éxito", "cliente": nuevo_cliente}
 
-# 5. Eliminar un cliente (delete)
+#5 Eliminar un cliente (delete)
 @app.delete("/clientes/{cliente_id}", summary="Eliminar un cliente")
 def eliminar_cliente(cliente_id: int):
     for indice, cliente in enumerate(BD_CLIENTES):

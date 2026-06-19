@@ -15,3 +15,12 @@ class factura:
     cliente:cliente
     Vr_total: float
 
+#1 crea factura nueva
+@app.post("/facturas", summary="Crear una nueva factura")
+def crear_factura(nueva_factura: FacturaModelo):
+    for factura in BD_FACTURAS:
+        if factura["id"] == nueva_factura.id:
+            raise HTTPException(status_code=400, detail="El ID de la factura ya existe")
+    
+    BD_FACTURAS.append(nueva_factura.model_dump())
+    return {"mensaje": "Factura creada con éxito", "factura": nueva_factura}
