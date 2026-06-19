@@ -20,6 +20,7 @@ class ClienteModelo(BaseModel):
 @app.get("/saludar/{nombre}") 
 def saludar_nombre(nombre: str): 
     return {"mensaje": f"Hola, {nombre}"}
+
 #2 actualizar el cliente
 @app.put("/clientes/{cliente_id}", summary="Actualizar todo el cliente")
 def actualizar_cliente_completo(cliente_id: int, datos_actualizados: ClienteModelo):
@@ -27,3 +28,8 @@ def actualizar_cliente_completo(cliente_id: int, datos_actualizados: ClienteMode
         if cliente["id"] == cliente_id:
             cliente.update(datos_actualizados.dict())
             return {"mensaje": f"Cliente con ID {cliente_id} actualizado con éxito", "cliente": cliente}
+
+# 3. Obtener todos los clientes (GET)
+@app.get("/clientes", summary="Obtener lista de clientes")
+def obtener_clientes():
+    return BD_CLIENTES
