@@ -10,8 +10,8 @@ BD_CLIENTES = [
     {"id": 2, "nombre": "karol", "email": "karol@mail.com",  "descripcion": "joven estudiante de la salle", },
 ]
 
-class Transacciones:
+class factura:
     id: int
-    Vr_unitario: float
-    cantidad: int 
-    factura_id: int
+    cliente:cliente
+    Vr_total: float
+
