@@ -18,6 +18,7 @@ class ClienteModelo(BaseModel):
     edad: int = Field(..., gt=0, lt=120) 
     email: str
     descripcion: str 
+    talla: int
     activo: bool = True
 
 class Transacciones:
