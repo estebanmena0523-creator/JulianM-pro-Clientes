@@ -24,3 +24,8 @@ def crear_factura(nueva_factura: FacturaModelo):
     
     BD_FACTURAS.append(nueva_factura.model_dump())
     return {"mensaje": "Factura creada con éxito", "factura": nueva_factura}
+
+#2 obtener fact
+@app.get("/facturas", summary="Obtener todas las facturas")
+def obtener_todas_las_facturas():
+    return BD_FACTURAS
