@@ -4,7 +4,6 @@ from typing import List
 
 app = FastAPI(title="JULIANM-PRO-CLIENTES")
 
-# ... (Tu código de BD_CLIENTES y ClienteModelo)
 
 # 1. Definimos el modelo de Pydantic para Transacciones
 class TransaccionModelo(BaseModel):
