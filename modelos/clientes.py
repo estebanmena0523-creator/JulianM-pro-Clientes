@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 from typing import Optional
 
-app = FastAPI(title="nombre pro clientes")
+app = FastAPI(title="JULIANM-PRO-CLIENTES")
 
 
 BD_CLIENTES = [
