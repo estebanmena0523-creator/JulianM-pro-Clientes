@@ -41,3 +41,17 @@ def crear_cliente(nuevo_cliente: ClienteModelo):
     for cliente in BD_CLIENTES:
         if cliente["id"] == nuevo_cliente.id:
             raise HTTPException(status_code=400, detail="El ID de cliente ya existe")
+        
+# Añadimos el cliente a la lista
+    BD_CLIENTES.append(nuevo_cliente.model_dump())
+    return {"mensaje": "Cliente creado con éxito", "cliente": nuevo_cliente}
+
+# 5. Eliminar un cliente (DELETE)
+@app.delete("/clientes/{cliente_id}", summary="Eliminar un cliente")
+def eliminar_cliente(cliente_id: int):
+    for indice, cliente in enumerate(BD_CLIENTES):
+        if cliente["id"] == cliente_id:
+            cliente_eliminado = BD_CLIENTES.pop(indice)
+            return {"mensaje": f"Cliente con ID {cliente_id} eliminado", "cliente": cliente_eliminado}
+    
+    raise HTTPException(status_code=404, detail="Cliente no encontrado")
